@@ -1,0 +1,59 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+.tela{
+    display: none;
+    min-height: 100vh;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+}
+html,body{
+    width: 100%;
+    min-height: 100%;
+}
+body{
+    min-height: 100vh;
+}
+
+#menu_inicial{
+
+    background-image: url('../img/menu-inicio-fundo-rpg.jpg');
+    background-size: cover;
+    background-position:center;
+    background-repeat: no-repeat;
+    color: #f5c76b;
+    justify-content: center;
+
+    font-family: 'Times New Roman',serif;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+#novo-jogo{
+
+}
+
+.btn_menu_iniciar{
+    width: min(80%,300px);
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: #8b6235;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+.btn_menu_iniciar:hover{
+    background: #b58a4f;
+}
