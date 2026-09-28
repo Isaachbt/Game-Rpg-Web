@@ -19,12 +19,14 @@ public class GameController {
 
 
     @GetMapping("/listClass")
-    public ResponseEntity<List<ClassesResponseDTO>> GameIniciarNovoPlayer(){
-            List<ClassesResponseDTO> dto = this.gameService.GameIniciarNovoPlayer();
-        if (!dto.isEmpty()){
-            return new ResponseEntity<>(dto, HttpStatus.OK);
-        }else {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    public ResponseEntity<List<ClassesResponseDTO>> GameIniciarNovoPlayer() {
+        List<ClassesResponseDTO> dto =
+                this.gameService.GameIniciarNovoPlayer();
+
+        if (!dto.isEmpty()) {
+            return ResponseEntity.ok(dto);
+        } else {
+            return ResponseEntity.ok().build();
         }
     }
 
