@@ -40,7 +40,6 @@ async function carregarClasses() {
                 card.classList.add("selecionado");
 
                 classeEscolhida = classe;
-
             });
             lista.appendChild(card);
         });
@@ -69,10 +68,38 @@ function validarBtnConfirmarPlayer(){
                 return;
             }
 
-            console.log("Nome do jogador:", nomeJogador);
-
-            //trocar tela por aqui dps
+            salvandoPlayerNoBanco(nomeJogador);
         })
+}
+
+async function salvandoPlayerNoBanco(nomeJogador){
+
+    console.log(classeEscolhida.idclasses)
+    console.log(nomeJogador)
+    const jogador = {
+        nomePlayer: nomeJogador,
+        idclasses: classeEscolhida.idclasses
+    }
+
+    try{
+        const resposta = await fetch("/player/salvandoPlayer", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(jogador)
+        });
+
+        if (!resposta.ok) {
+            throw new Error("HTTP " + resposta.status);
+        }
+        alert("Jogador criado.");
+
+    }catch (erro) {
+        console.error("Erro ao criar jogador:", erro);
+        alert("Não foi possível criar o jogador.");
+    }
+
 }
 
 carregarClasses();
