@@ -31,17 +31,14 @@ body{
     background-repeat: no-repeat;
     color: #f5c76b;
     justify-content: center;
-
     font-family: 'Times New Roman', serif;
-
-    /*display: flex;  obs: ativar essa tela dps*/
+    display: flex;
     flex-direction: column;
     align-items: center;
     gap: 15px;
 }
 
 #tela_classes {
-    display: flex;
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
