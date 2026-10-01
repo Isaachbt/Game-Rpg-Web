@@ -3,6 +3,8 @@ package com.isaac.br.gamerpgweb.entitys;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.UUID;
+
 @Entity
 @Table(name = "classes")
 @AllArgsConstructor
@@ -13,8 +15,9 @@ import lombok.*;
 public class ClassesPlayer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idclasses;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "idclasses")
+    private UUID idclasses;
     private String nome;
     private String tipo;
     private int vida;
