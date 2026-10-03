@@ -58,7 +58,7 @@ function validarBtnConfirmarPlayer(){
         btnCriarPlayer.addEventListener("click", () => {
             const nomeJogador = document.getElementById("input-nome").value.trim();
 
-            if (nomeJogador.trim() === "") {
+            if (nomeJogador === "") {
                 alert("Digite seu nome!");
                 return;
             }
@@ -67,8 +67,7 @@ function validarBtnConfirmarPlayer(){
                 alert("Selecione uma class!")
                 return;
             }
-
-            salvandoPlayerNoBanco(nomeJogador);
+                salvandoPlayerNoBanco(nomeJogador);
         })
 }
 
@@ -93,13 +92,17 @@ async function salvandoPlayerNoBanco(nomeJogador){
         if (!resposta.ok) {
             throw new Error("HTTP " + resposta.status);
         }
-        alert("Jogador criado.");
+        criarPlayerAndPrimeiraFase()
 
     }catch (erro) {
         console.error("Erro ao criar jogador:", erro);
         alert("Não foi possível criar o jogador.");
     }
 
+}
+
+function criarPlayerAndPrimeiraFase(){
+        window.location.href = "../floresta-inicio.html";
 }
 
 carregarClasses();
