@@ -19,27 +19,27 @@
         <div class="status-item">
             <span class="icon">❤️</span>
             <div class="status-info">
-                <span class="label">Vida: 100/100</span>
+                <span class="label" id="vida">Vida: 100/100</span>
 
                 <div class="bar">
-                    <div class="fill vida"></div>
+                    <div class="fill vida" id="barra-vida"></div>
                 </div>
             </div>
         </div>
 
         <div class="status-item">
             <span class="icon">🪙</span>
-            <span class="label">Dinheiro: 250</span>
+            <span class="label" id="dinheiro">Dinheiro: 250</span>
         </div>
 
         <div class="status-item">
             <span class="icon">👑</span>
 
             <div class="status-info">
-                <span class="label">Rank: Iniciante</span>
+                <span class="label" id="rank">Rank: Iniciante</span>
 
                 <div class="bar">
-                    <div class="fill rank"></div>
+                    <div class="fill rank" id="barra-xp"></div>
                 </div>
             </div>
         </div>
@@ -74,20 +74,20 @@
                 <div class="player-divider"></div>
                 <div class="stats">
                     <div>
-                        <span>Vida:</span>
-                        <strong>100/100</strong>
+                        <span >Vida:</span>
+                        <strong id="card-player-vida">100/100</strong>
                     </div>
                     <div>
                         <span>Dano:</span>
-                        <strong>25</strong>
+                        <strong id="card-player-dano">25</strong>
                     </div>
                     <div>
                         <span>Defesa:</span>
-                        <strong>30</strong>
+                        <strong id="card-player-defesa">30</strong>
                     </div>
                     <div>
                         <span>Rank:</span>
-                        <strong>Iniciante</strong>
+                        <strong id="card-player-rank">Iniciante</strong>
                     </div>
                 </div>
             </div>
@@ -169,5 +169,7 @@
         </section>
     </main>
 </div>
+
+<script src="js/menu_jogo.js"></script>
 </body>
 </html>
