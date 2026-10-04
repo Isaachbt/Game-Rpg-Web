@@ -1,14 +1,17 @@
 package com.isaac.br.gamerpgweb.controller;
 
+import com.isaac.br.gamerpgweb.entitys.Player;
 import com.isaac.br.gamerpgweb.entitys.record.CriandoPlayerDTO;
+import com.isaac.br.gamerpgweb.entitys.record.PlayerDTO;
+import com.isaac.br.gamerpgweb.entitys.record.PlayerIdDTO;
 import com.isaac.br.gamerpgweb.service.PlayerService;
+import jakarta.annotation.Nonnull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/player")
@@ -26,6 +29,11 @@ public class PlayerController {
         }else{
             return ResponseEntity.badRequest().build();
         }
+    }
 
+    @PostMapping("/get-player")
+    public ResponseEntity<Player> getPlayer(@RequestBody @Validated @Nonnull PlayerIdDTO playerIdDTO){
+
+        return ResponseEntity.ok().body(playerService.getPlayer(playerIdDTO.idPlayer()));
     }
 }

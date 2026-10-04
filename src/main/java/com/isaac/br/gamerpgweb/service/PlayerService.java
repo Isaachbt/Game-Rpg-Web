@@ -8,8 +8,10 @@ import com.isaac.br.gamerpgweb.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class PlayerService {
@@ -18,7 +20,6 @@ public class PlayerService {
     private PlayerRepository playerRepository;
     @Autowired
     private ClassesPlayerRepository classesPlayerRepository;
-
 
     public List<ClassesPlayer> getClassesPlayer(){
         Optional<List<ClassesPlayer>> opt = Optional.of(classesPlayerRepository.findAll());
@@ -29,7 +30,6 @@ public class PlayerService {
     }
 
     public void criandoPlayer(CriandoPlayerDTO playerDTO){
-
         ClassesPlayer classesPlayer;
 
         System.out.println(playerDTO.idclasses());
@@ -55,6 +55,9 @@ public class PlayerService {
             player.setDano(classesPlayer.getDano());
             player.setDefesa(classesPlayer.getDefesa());
             player.setTipoArma(classesPlayer.getTipoArma());
+            player.setMoeda(BigDecimal.valueOf(50));
+            player.setXp(0);
+            player.setPlayer_rank("G");
             try {
                 playerRepository.save(player);
             }catch (Exception e){
@@ -62,5 +65,10 @@ public class PlayerService {
                 throw new RuntimeException("Erro ao salvar jogador.");
             }
         }
+    }
+
+    public Player getPlayer(UUID id){
+        return playerRepository.findById(id).orElseThrow(() -> new RuntimeException("Player nao encontrado"));
+
     }
 }
