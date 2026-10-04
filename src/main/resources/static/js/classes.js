@@ -72,14 +72,6 @@ function validarBtnConfirmarPlayer(){
 }
 
 async function salvandoPlayerNoBanco(nomeJogador){
-
-    console.log(classeEscolhida.idclasses)
-    console.log(nomeJogador)
-    const jogador = {
-        nomePlayer: nomeJogador,
-        idclasses: classeEscolhida.idclasses
-    }
-
     try{
         const resposta = await fetch("/player/salvandoPlayer", {
             method: "POST",
