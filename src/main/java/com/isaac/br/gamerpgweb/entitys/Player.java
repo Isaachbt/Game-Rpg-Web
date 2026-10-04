@@ -1,12 +1,11 @@
 package com.isaac.br.gamerpgweb.entitys;
-
-import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 @Entity
@@ -27,6 +26,9 @@ public class Player {
     private int dano;
     private int defesa;
     private String tipoArma;
+    private int xp;
+    private BigDecimal moeda;
+    private String player_rank;
     //private List<InventarioPlayer> inventario;
 
 }
