@@ -1,4 +1,5 @@
 package com.isaac.br.gamerpgweb.entitys;
+import com.isaac.br.gamerpgweb.entitys.enums.Enum_rank;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,7 +29,8 @@ public class Player {
     private String tipoArma;
     private int xp;
     private BigDecimal moeda;
-    private String player_rank;
+    @Enumerated(EnumType.STRING)
+    private Enum_rank player_rank;
     //private List<InventarioPlayer> inventario;
 
 }
