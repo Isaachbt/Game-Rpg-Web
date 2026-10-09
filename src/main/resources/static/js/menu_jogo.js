@@ -53,4 +53,12 @@ function atualizandoDadosBar(player){
     document.getElementById("card-player-rank").textContent = `${player.player_rank}`;
 
 }
+
+function btnBatalhar(){
+    const btnCriarPlayer = document.getElementById("batalhar");
+    btnCriarPlayer.addEventListener("click", ()=>{
+        window.location.href = "../batalha.html";
+    })
+}
+btnBatalhar();
 dadosPlayer()
