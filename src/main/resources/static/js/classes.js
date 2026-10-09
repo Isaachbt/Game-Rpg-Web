@@ -73,6 +73,11 @@ function validarBtnConfirmarPlayer(){
 
 async function salvandoPlayerNoBanco(nomeJogador){
     try{
+        const jogador = {
+            nomePlayer: nomeJogador,
+            idclasses: classeEscolhida.idclasses
+        };
+
         const resposta = await fetch("/player/salvandoPlayer", {
             method: "POST",
             headers: {
