@@ -1,0 +1,307 @@
+:root {
+    --gold: #c89437;
+    --gold-light: #e5bd72;
+    --text: #eadcc2;
+    --text-muted: #b8aa93;
+    --panel: rgba(8, 9, 8, 0.88);
+    --panel-light: rgba(20, 20, 18, 0.88);
+    --border: rgba(200, 148, 55, 0.9);
+    --red: #ad2929;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html,
+body {
+    margin: 0;
+    min-height: 100%;
+    background: transparent;
+}
+
+body {
+    position: relative;
+    min-height: 100vh;
+}
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: 1;
+
+    pointer-events: none;
+}
+
+.container {
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    color: white;
+    background-color: #222;
+
+    background-image: url('../img/img-floresta/fundo_floresta.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.top-bar {
+    display: grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap: 16px;
+    width: 850px;
+    max-width: 100%;
+    margin-right: min(5%,10vh);
+    margin-left: min(40%,50vh);
+    padding-top: min(2%, 10vh);
+
+}
+
+.status-item {
+    min-height: 70px;
+    /*display: flex;*/
+    align-items: center;
+    gap: 15px;
+    padding: 12px 20px;
+    background: rgba(8, 9, 8, .88);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    box-shadow: 0 8px 25px rgba(0,0,0,.5);
+}
+.status-info {
+    flex: 1;
+}
+.status-item .icon {
+    font-size: 28px;
+}
+.label {
+    color: var(--gold-light);
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(0,0,0,.8);
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: 20px;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.fill {
+    height: 100%;
+}
+
+.fill.vida {
+    width: 94%;
+    background: linear-gradient(90deg, #831b1b, #cf3535);
+}
+
+.fill.rank {
+    width: 20%;
+    background: linear-gradient(90deg, #a77526, #efc56b);
+}
+
+.intro {
+    max-width: 650px;
+    margin: 0 auto 30px;
+    padding-top: min(2%,3vh);
+    text-align: center;
+}
+.intro h1 {
+    color: var(--gold-light);
+    font-size: clamp(36px, 4vw, 58px);
+    text-shadow: 0 3px 8px black;
+}
+.divider {
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: var(--gold);
+    margin: 12px 0;
+}
+.divider span {
+    width: 190px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold));
+}
+
+.divider span:last-child {
+    background: linear-gradient(90deg, var(--gold), transparent);
+}
+.intro p {
+    font-size: 17px;
+    line-height: 1.5;
+    color: #ddd1bb;
+    text-shadow: 0 2px 4px black;
+}
+
+.content {
+    display: grid;
+    grid-template-columns:270px 1fr;
+    gap: 20px;
+    align-items: stretch;
+    padding-left: min(30%,40vh);
+    padding-right: min(30%,40vh);
+}
+.player-card {
+    background:
+            linear-gradient(180deg,
+                    rgba(16,16,13,.92),
+                    rgba(5,5,5,.95));
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px
+            rgba(0,0,0,.7);
+}
+.player-image-container {
+    height: 220px;
+    padding: 8px;
+}
+.player-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 1px solid rgba(200,148,55,.6);
+}
+.player-info {
+    text-align: center;
+    padding: 8px 25px 20px;
+}
+.player-info h2 {
+    color: var(--gold-light);
+    font-size: 22px;
+}
+.player-class {
+    display: block;
+    margin: 2px 0 12px;
+    color: #e7d1a8;
+}
+.player-divider {
+    width: 100%;
+    height: 1px;
+    margin: 8px 0 12px;
+    background: rgba(200, 148, 55, .3);
+}
+.stats {
+    flex-direction: column;
+    gap: 7px;
+}
+.stats div {
+    justify-content: space-between;
+    color: var(--gold-light);
+}
+.stats strong {
+    color: white;
+    font-weight: normal;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+.menu-card {
+    position: relative;
+    width: 100%;
+    min-height: 190px;
+    padding: 0;
+    border: 2px solid #8b6235;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+    transition: transform 0.2s ease,
+    border-color 0.2s ease;
+}
+.floresta-card {
+    background: url("../img/img-floresta/menu-floresta.png")
+            center /cover;
+}
+.loja-card {
+    background: url("../img/img-floresta/menu-loja.png")
+            center /cover;
+}
+.inventario-card {
+    background: url("../img/img-floresta/menu-inventario.png")
+            center /cover;
+}
+.descansar-card {
+    background: url("../img/img-floresta/menu-descansar.png")
+            center /cover;
+}
+.card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+            to top,
+            rgba(0, 0, 0, .95) 5%,
+            rgba(0, 0, 0, .62) 55%,
+            rgba(0, 0, 0, .15)
+    );
+    pointer-events: none;
+}
+.card-content {
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+    pointer-events: none;
+}
+.card-icon {
+    color: var(--gold);
+    font-size: 35px;
+    margin-bottom: 7px;
+}
+.menu-card h2 {
+    color: var(--gold-light);
+    font-size: 23px;
+    margin-bottom: 5px;
+}
+.menu-card p {
+    color: #ddd6cb;
+    line-height: 1.35;
+    font-size: 15px;
+}
+.arrow {
+    position: absolute;
+    right: 20px;
+    bottom: 45%;
+    z-index: 2;
+    color: var(--gold);
+    font-size: 30px;
+    pointer-events: none;
+    transition: transform 0.25s ease;
+}
+.menu-card:hover {
+    border-color: #f5c76b;
+    transform: scale(1.05);
+}
+
+.menu-card.selecionado {
+    border: 3px solid #f5c76b;
+    box-shadow: 0 0 20px #f5c76b;
+    transform: scale(1.05);
+}
+
+.menu-card:hover .arrow {
+    transform: translateX(5px);
+}
+@media(max-width: 850px) {
+    .top-bar {grid-template-columns:1fr;
+        width: 100%;}
+.content {
+        grid-template-columns:1fr;
+}
+.player-card {
+        max-width: 350px;
+        margin: auto;
+}
+.menu-grid {
+    grid-template-columns:1fr;
+}
+}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>RPG WEB</title>
+    <link rel="stylesheet" href="css/gamer.css">
+</head>
+<body>
+
+
+<div id="menu_inicial" class="tela" >
+    <h1 align="center">RPG WEB</h1>
+    <button class="btn_menu_iniciar" onclick="mostrarTela('Continuar')">Continuar</button>
+    <button class="btn_menu_iniciar" onclick="mostrarTela('tela_classes')">Novo jogo</button>
+    <button class="btn_menu_iniciar" onclick="mostrarTela('Configuração')">Configuração</button>
+</div>
+
+
+<div id="tela_classes" class="tela">
+    <h1 id="titulo_comecar_aventura">Começar aventura</h1>
+
+    <form>
+        <input type="text" id="input-nome" name="nome"
+               maxlength="50" placeholder="Digite seu nome">
+    </form>
+
+    <h3 id="tt_escolher_class">Escolha uma class</h3>
+    <div id="lista_classes"></div>
+
+    <button id="btn_criar-jogador" >Criar player</button>
+</div>
+
+<script src="js/classes.js"></script>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>

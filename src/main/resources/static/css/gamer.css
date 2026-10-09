@@ -1,0 +1,165 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+.tela{
+    display: none;
+    min-height: 100vh;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+}
+
+html,body{
+    width: 100%;
+    min-height: 100%;
+}
+
+body{
+    min-height: 100vh;
+}
+
+#menu_inicial {
+
+    background-image: url('../img/menu-inicio-fundo-rpg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #f5c76b;
+    justify-content: center;
+    font-family: 'Times New Roman', serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+#tela_classes {
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    color: white;
+    background-color: #222;
+
+    background-image: url('../img/fundo-escolher-class.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#lista_classes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.card_classe {
+    width: 200px;
+    padding: 15px;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid #8b6235;
+    border-radius: 12px;
+    color: white;
+    cursor: pointer;
+}
+
+.card_classe img {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    display: block;
+}
+
+.card_classe:hover {
+    border-color: #f5c76b;
+    transform: scale(1.05);
+}
+
+.card_classe.selecionado {
+    border: 3px solid #f5c76b;
+    box-shadow: 0 0 20px #f5c76b;
+    transform: scale(1.05);
+}
+
+#titulo_comecar_aventura{
+    margin-top: min(5%,5vh);
+    font-size: 40px;
+    color: #b58a4f;
+}
+
+#input-nome {
+    margin-top: min(30%,20vh);
+
+    width: 350px;
+    padding: 15px 20px;
+
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+
+    border: 2px solid #f5c76b;
+    border-radius: 15px;
+
+    font-size: 18px;
+    outline: none;
+
+    transition: 0.3s ease;
+}
+
+#input-nome:focus {
+    border-color: #ffd700;
+    box-shadow: 0 0 12px rgba(245, 199, 107, 0.6);
+}
+
+#input-nome::placeholder {
+    color: #c5b58c;
+    opacity: 1;
+}
+
+#tt_escolher_class{
+    margin-top: min(2%,2vh);
+    font-size: 20px;
+    color: #b58a4f;
+}
+
+#btn_criar-jogador{
+    margin-top: min(2%,2vh);
+    background: #8b6235;
+    color: white;
+    border: 2px solid #f5c76b;
+    border-radius: 12px;
+    padding: 15px 30px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+#btn_criar-jogador:hover{
+    background: #f5c76b;
+    color: #fafafa;
+    transform: scale(1.05);
+    box-shadow: 0 0 12px rgba(245, 199, 107, 0.6);
+}
+.btn_menu_iniciar{
+    width: min(80%,300px);
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: #8b6235;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.btn_menu_iniciar:hover{
+    background: #b58a4f;
+}

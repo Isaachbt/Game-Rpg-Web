@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batalha RPG</title>
+    <link rel="stylesheet" href="css/batalha.css">
+</head>
+<body>
+
+<div class="background"></div>
+<div class="overlay"></div>
+
+<main class="game-shell">
+
+    <!-- TOPO GLOBAL -->
+    <header class="top-bar">
+        <div class="status-item">
+            <span class="icon">❤️</span>
+            <div class="status-info">
+                <span class="label" id="top-vida">Vida: 100/100</span>
+                <div class="bar">
+                    <div class="fill vida" id="top-barra-vida"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="status-item">
+            <span class="icon">🪙</span>
+            <span class="label" id="top-moeda">Dinheiro: 250</span>
+        </div>
+
+        <div class="status-item">
+            <span class="icon">👑</span>
+            <div class="status-info">
+                <span class="label" id="top-rank">Rank: Iniciante</span>
+                <div class="bar">
+                    <div class="fill rank" id="top-barra-rank"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- TELA 1: FLORESTA / PROCURAR -->
+    <section id="tela-floresta" class="screen active">
+        <div class="screen-card hero-card">
+            <span class="eyebrow">Área de exploração</span>
+            <h1>Floresta Sombria</h1>
+            <p class="description">
+                Explore a floresta em busca de monstros, tesouros ou eventos aleatórios.
+            </p>
+
+            <div class="forest-scene">
+                <div class="scene-glow"></div>
+                <div class="scene-title">🌲 🌲 🌲</div>
+                <p id="texto-exploracao">A floresta está silenciosa...</p>
+            </div>
+
+            <div class="main-actions">
+                <button id="btn-procurar" class="btn btn-primary">
+                    🔎 Procurar na floresta
+                </button>
+                <button class="btn btn-secondary" id="voltar-para-menu">
+                    ← Voltar para a cidade
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- TELA 2: PROCURANDO -->
+    <section id="tela-procurando" class="screen">
+        <div class="screen-card search-card">
+            <span class="eyebrow">Exploração</span>
+            <h2>Procurando...</h2>
+
+            <div class="loader">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <p class="description">
+                Você entra mais fundo na floresta procurando sinais de perigo.
+            </p>
+        </div>
+    </section>
+
+    <!-- TELA 3: NADA ENCONTRADO -->
+    <section id="tela-vazio" class="screen">
+        <div class="screen-card result-card">
+            <div class="result-icon">🍃</div>
+            <h2>Nada encontrado</h2>
+            <p>
+                Você vasculhou a região, mas não encontrou nenhum inimigo.
+            </p>
+            <p class="muted">Voltando para a floresta...</p>
+        </div>
+    </section>
+
+    <!-- TELA 4: MONSTRO ENCONTRADO -->
+    <section id="tela-encontro" class="screen">
+        <div class="screen-card encounter-card">
+            <span class="eyebrow danger">Encontro!</span>
+            <h2>Um monstro apareceu</h2>
+
+            <div class="monster-preview">
+                <div class="monster-avatar">👹</div>
+                <div>
+                    <h3 id="encontro-monstro-nome">Goblin da Floresta</h3>
+                    <p id="encontro-monstro-desc">Uma criatura hostil bloqueia seu caminho.</p>
+                </div>
+            </div>
+
+            <div class="main-actions">
+                <button id="btn-iniciar-batalha" class="btn btn-danger">
+                    ⚔️ Entrar em batalha
+                </button>
+                <button id="btn-fugir-encontro" class="btn btn-secondary">
+                    🏃 Fugir
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- TELA 5: BATALHA -->
+    <section id="tela-batalha" class="screen">
+        <div class="battle-layout">
+
+            <div class="fighter-card player-card">
+                <div class="fighter-header">
+                    <div>
+                        <span class="eyebrow">Jogador</span>
+                        <h2 id="player-nome">Isaac</h2>
+                    </div>
+                    <div class="fighter-avatar">🧙</div>
+                </div>
+
+                <div class="stat-row">
+                    <span>Vida</span>
+                    <strong id="player-vida-texto">100/100</strong>
+                </div>
+
+                <div class="battle-bar">
+                    <div class="battle-fill player-life" id="player-barra-vida"></div>
+                </div>
+
+                <div class="fighter-stats">
+                    <span>⚔ Dano <strong id="player-dano">20</strong></span>
+                    <span>🛡 Defesa <strong id="player-defesa">8</strong></span>
+                </div>
+            </div>
+
+            <div class="versus">
+                <span>VS</span>
+            </div>
+
+            <div class="fighter-card monster-card">
+                <div class="fighter-header">
+                    <div>
+                        <span class="eyebrow danger">Inimigo</span>
+                        <h2 id="monstro-nome">Goblin da Floresta</h2>
+                    </div>
+                    <div class="fighter-avatar monster-avatar">👹</div>
+                </div>
+
+                <div class="stat-row">
+                    <span>Vida</span>
+                    <strong id="monstro-vida-texto">60/60</strong>
+                </div>
+
+                <div class="battle-bar">
+                    <div class="battle-fill monster-life" id="monstro-barra-vida"></div>
+                </div>
+
+                <div class="fighter-stats">
+                    <span>⚔ Dano <strong id="monstro-dano">12</strong></span>
+                    <span>🛡 Defesa <strong id="monstro-defesa">4</strong></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="battle-panel">
+            <div class="turn-info">
+                <span class="eyebrow">Seu turno</span>
+                <h3>Escolha uma ação</h3>
+            </div>
+
+            <div class="skill-grid">
+                <button class="skill-card" id="skill-ataque">
+                    <span class="skill-icon">⚔️</span>
+                    <span class="skill-name">Ataque</span>
+                    <span class="skill-desc">Ataque básico</span>
+                </button>
+
+                <button class="skill-card" id="skill-especial">
+                    <span class="skill-icon">🔥</span>
+                    <span class="skill-name">Golpe Especial</span>
+                    <span class="skill-desc">Dano alto</span>
+                </button>
+
+                <button class="skill-card" id="skill-pocao">
+                    <span class="skill-icon">🧪</span>
+                    <span class="skill-name">Poção</span>
+                    <span class="skill-desc">Recupera 30 HP</span>
+                </button>
+
+                <button class="skill-card danger-card" id="skill-fugir">
+                    <span class="skill-icon">🏃</span>
+                    <span class="skill-name">Fugir</span>
+                    <span class="skill-desc">Tentar escapar</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- LOG -->
+        <div class="battle-log-card">
+            <div class="log-header">
+                <div>
+                    <span class="eyebrow">Histórico</span>
+                    <h3>Log da batalha</h3>
+                </div>
+                <button id="btn-limpar-log" class="btn-mini">Limpar</button>
+            </div>
+
+            <div id="log-batalha" class="battle-log">
+                <p class="log-system">A batalha começou.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TELA 6: VITÓRIA -->
+    <section id="tela-vitoria" class="screen">
+        <div class="screen-card result-card victory">
+            <div class="result-icon">🏆</div>
+            <span class="eyebrow success">Vitória</span>
+            <h2>Monstro derrotado!</h2>
+
+            <div class="rewards">
+                <div>
+                    <span>⭐</span>
+                    <strong id="recompensa-xp">+25 XP</strong>
+                </div>
+                <div>
+                    <span>🪙</span>
+                    <strong id="recompensa-moeda">+12 moedas</strong>
+                </div>
+            </div>
+
+            <button id="btn-voltar-vitoria" class="btn btn-primary">
+                Continuar explorando
+            </button>
+        </div>
+    </section>
+
+    <!-- TELA 7: DERROTA -->
+    <section id="tela-derrota" class="screen">
+        <div class="screen-card result-card defeat">
+            <div class="result-icon">💀</div>
+            <span class="eyebrow danger">Derrota</span>
+            <h2>Você foi derrotado</h2>
+            <p>Seu personagem precisa descansar antes de tentar novamente.</p>
+
+            <button id="btn-voltar-derrota" class="btn btn-secondary">
+                Voltar
+            </button>
+        </div>
+    </section>
+
+</main>
+
+<script src="js/batalha.js"></script>
+</body>
+</html>
