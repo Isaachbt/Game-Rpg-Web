@@ -4,17 +4,23 @@ import com.isaac.br.gamerpgweb.entitys.Batalha;
 import com.isaac.br.gamerpgweb.entitys.Monstro;
 import com.isaac.br.gamerpgweb.entitys.Player;
 import com.isaac.br.gamerpgweb.entitys.enums.StatusBatalha;
+import com.isaac.br.gamerpgweb.entitys.record.BatalhaResponse;
 import com.isaac.br.gamerpgweb.repository.BatalhaRepository;
 import com.isaac.br.gamerpgweb.repository.MonstroRepository;
 import com.isaac.br.gamerpgweb.repository.PlayerRepository;
+import com.isaac.br.gamerpgweb.util.BatalhaMapper;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.Optional;
+import java.util.Random;
 import java.util.UUID;
 
 @Service
+@RequiredArgsConstructor
 public class BatalhaService {
 
     @Autowired
@@ -23,6 +29,7 @@ public class BatalhaService {
     private MonstroRepository monstroRepository;
     @Autowired
     private PlayerRepository playerRepository;
+    private final BatalhaMapper mapper;
 
     @Transactional
     public Batalha batalhaEncontrada(UUID idMonstro){
@@ -46,33 +53,38 @@ public class BatalhaService {
     }
 
     @Transactional
-    public Batalha atacando(UUID idBatalha){
+    public BatalhaResponse atacando(UUID idBatalha){
         Batalha batalha = buscarBatalhaAtiva(idBatalha);
         Player p =  batalha.getPlayer();
         Monstro m =  batalha.getMonstro();
-
+        Random random = new Random();
         if (batalha.getStatus() != StatusBatalha.EM_ANDAMENTO){
             throw new IllegalStateException("Batalha finalizada");
         }
 
-        int danoPlayer = Math.max(p.getDano() - m.getDefesa(), 1);
+        int danoPlayer = Math.max(random.nextInt( 2,p.getDano() +1) - m.getDefesa(), 1);
         batalha.setVidaAtualMonstro(Math.max(batalha.getVidaAtualMonstro() - danoPlayer,0));
 
         if (batalha.getVidaAtualMonstro() == 0) {
             batalha.setTurno(batalha.getTurno() + 1);
             batalha.setStatus(StatusBatalha.VITORIA);
             p.setXp(p.getXp() + m.getXp());
-            return batalha;
+            var moedaBonus = new  BigDecimal( String.valueOf(random.nextInt(11)+1));
+            var moedaAtual = new  BigDecimal(String.valueOf(p.getMoeda()));
+            p.setMoeda(moedaAtual.add(moedaBonus));
+            return mapper.toDTO(batalha,0,danoPlayer,moedaBonus);
         }
 
-        var danoMonstro = Math.max(m.getDano() - p.getDefesa(), 1);
+        var danoMonstro = Math.max(random.nextInt(2,m.getDano()+1) - p.getDefesa(), 3);
         p.setVida(Math.max(p.getVida() - danoMonstro,0));
 
         if (p.getVida() == 0) {
-            batalha.setTurno(batalha.getTurno() + 1);
-            batalha.setStatus(StatusBatalha.DERROTA);}
+            batalha.setStatus(StatusBatalha.DERROTA);
+
+        }
+
         batalha.setTurno(batalha.getTurno() + 1);
-        return batalha;
+        return mapper.toDTO(batalha,danoMonstro,danoPlayer,null);
 
     }
 

@@ -2,6 +2,7 @@ package com.isaac.br.gamerpgweb.controller;
 
 import com.isaac.br.gamerpgweb.entitys.Batalha;
 import com.isaac.br.gamerpgweb.entitys.record.BatalhaIdDTO;
+import com.isaac.br.gamerpgweb.entitys.record.BatalhaResponse;
 import com.isaac.br.gamerpgweb.entitys.record.PlayerIdDTO;
 import com.isaac.br.gamerpgweb.service.BatalhaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class BatalhaController {
     }
 
     @PostMapping("/atacando")
-    public ResponseEntity<Batalha> atacando(@RequestBody BatalhaIdDTO batalhaIdDTO){
+    public ResponseEntity<BatalhaResponse> atacando(@RequestBody BatalhaIdDTO batalhaIdDTO){
         if (batalhaIdDTO != null){
             return ResponseEntity.ok(batalhaService.atacando(batalhaIdDTO.idBatalha()));
         }else {
