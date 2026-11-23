@@ -1,9 +1,12 @@
 package com.isaac.br.gamerpgweb.service;
 
 import com.isaac.br.gamerpgweb.entitys.ClassesPlayer;
+import com.isaac.br.gamerpgweb.entitys.Monstro;
 import com.isaac.br.gamerpgweb.entitys.Player;
+import com.isaac.br.gamerpgweb.entitys.enums.Enum_rank;
 import com.isaac.br.gamerpgweb.entitys.record.CriandoPlayerDTO;
 import com.isaac.br.gamerpgweb.repository.ClassesPlayerRepository;
+import com.isaac.br.gamerpgweb.repository.MonstroRepository;
 import com.isaac.br.gamerpgweb.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,14 +23,9 @@ public class PlayerService {
     private PlayerRepository playerRepository;
     @Autowired
     private ClassesPlayerRepository classesPlayerRepository;
+    @Autowired
+    private MonstroRepository monstroRepository;
 
-    public List<ClassesPlayer> getClassesPlayer(){
-        Optional<List<ClassesPlayer>> opt = Optional.of(classesPlayerRepository.findAll());
-        if (opt.isEmpty()) {
-            throw new RuntimeException("Erro ao tentar obter a classes player");
-        }
-        return opt.get();
-    }
 
     public void criandoPlayer(CriandoPlayerDTO playerDTO){
         ClassesPlayer classesPlayer;
@@ -57,7 +55,7 @@ public class PlayerService {
             player.setTipoArma(classesPlayer.getTipoArma());
             player.setMoeda(BigDecimal.valueOf(50));
             player.setXp(0);
-            player.setPlayer_rank("G");
+            player.setPlayer_rank(Enum_rank.F);
             try {
                 playerRepository.save(player);
             }catch (Exception e){
@@ -70,5 +68,14 @@ public class PlayerService {
     public Player getPlayer(UUID id){
         return playerRepository.findById(id).orElseThrow(() -> new RuntimeException("Player nao encontrado"));
 
+    }
+
+    public Monstro getMonstro(UUID id){
+        Optional<Monstro> monstro = monstroRepository.findRandomByRank(getPlayer(id).getPlayer_rank().toString());
+
+        if (monstro.isEmpty()){
+            throw new RuntimeException("Monstro nao encontrado");
+        }
+        return monstro.get();
     }
 }

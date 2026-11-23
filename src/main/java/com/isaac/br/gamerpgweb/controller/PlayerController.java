@@ -1,8 +1,8 @@
 package com.isaac.br.gamerpgweb.controller;
 
+import com.isaac.br.gamerpgweb.entitys.Monstro;
 import com.isaac.br.gamerpgweb.entitys.Player;
 import com.isaac.br.gamerpgweb.entitys.record.CriandoPlayerDTO;
-import com.isaac.br.gamerpgweb.entitys.record.PlayerDTO;
 import com.isaac.br.gamerpgweb.entitys.record.PlayerIdDTO;
 import com.isaac.br.gamerpgweb.service.PlayerService;
 import jakarta.annotation.Nonnull;
@@ -35,5 +35,11 @@ public class PlayerController {
     public ResponseEntity<Player> getPlayer(@RequestBody @Validated @Nonnull PlayerIdDTO playerIdDTO){
 
         return ResponseEntity.ok().body(playerService.getPlayer(playerIdDTO.idPlayer()));
+    }
+
+    @PostMapping("/get-monstro")
+    public ResponseEntity<Monstro> getMonstro(@RequestBody @Validated @Nonnull PlayerIdDTO playerIdDTO){
+
+        return ResponseEntity.ok().body(playerService.getMonstro(playerIdDTO.idPlayer()));
     }
 }
